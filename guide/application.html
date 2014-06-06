@@ -98,6 +98,8 @@
 </pre></td></tr></table></figure>
 
 
+
+
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -117,6 +119,7 @@ Vue.component(<span class="string">'page1'</span>, { <span class="comment">/* ..
     }
 })
 </pre></td></tr></table></figure>
+
 
 <p>The <code>home</code> component will be rendered in place of <code>v-view</code>. When <code>currentView</code>‘s value changes to <code>page1</code>, the existing <code>home</code> component will be destroyed and replaced by the new <code>page1</code> component. The full, more detailed example can be found <a href="https://github.com/yyx990803/vue/blob/master/test/functional/fixtures/routing.html" target="_blank">here</a>.</p>
 <p class="tip"><code>v-view</code> will replace the element it’s bound to with the new instantiated VM’s element, so avoid using it on your root element.</p>
@@ -141,6 +144,7 @@ module.exports = {
 }
 </pre></td></tr></table></figure>
 
+
 <p>You can use that file in your entry module like this:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -163,6 +167,7 @@ module.exports = {
     }
 })
 </pre></td></tr></table></figure>
+
 
 <p>And you can test that module like this:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -202,6 +207,7 @@ describe(<span class="string">'my-component'</span>, <span class="function"><spa
 
 })
 </pre></td></tr></table></figure>
+
 
 <p class="tip">Since Vue.js bindings update asynchronously, you should use <code>Vue.nextTick()</code> when asserting DOM updates after changing the data.</p>
 </div>

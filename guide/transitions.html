@@ -87,6 +87,7 @@
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"msg"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-transition</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
 </pre></td></tr></table></figure>
 
+
 <p>You will also need to provide CSS rules for <code>v-enter</code> and <code>v-leave</code> classes (the class names can be configured with <code>Vue.config()</code>):</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre>1
 2
@@ -113,6 +114,7 @@
     <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0</span></span></span>;
 <span class="rule">}</span></span>
 </pre></td></tr></table></figure>
+
 
 <div id="demo"><p class="msg" v-if="show" v-transition>Hello!</p><button v-on="click: show = !show">Toggle</button></div>
 
@@ -165,6 +167,8 @@ new Vue({
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"animated"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-animation</span>&gt;</span>Look at me!<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
 
 
 <figure class="highlight css"><table><tr><td class="gutter"><pre>1
@@ -238,6 +242,7 @@ new Vue({
     <span class="rule">}</span></span>
 }
 </pre></td></tr></table></figure>
+
 
 <div id="anim" class="demo"><span class="animated" v-if="show" v-animation>Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
 
@@ -332,11 +337,13 @@ new Vue({
 })
 </pre></td></tr></table></figure>
 
+
 <p>The third argument, <code>timeout</code>, is a wrapped version of <code>setTimeout</code>. You should use it in place of <code>setTimeout</code> so that when an effect is cancelled, its associated timers can be cleared.</p>
 <p>Then you can use it by providing the effect id to <code>v-effect</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-effect</span>=<span class="value">"my-effect"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Next: <a href="/guide/composition.html">Composing ViewModels</a>.</p>
 

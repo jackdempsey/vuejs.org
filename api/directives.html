@@ -102,6 +102,7 @@
 "</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
 </pre></td></tr></table></figure>
 
+
 <h3 id="v-attr">v-attr</h3>
 <ul>
 <li>This directive requires an argument.</li>
@@ -111,6 +112,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">v-attr</span>=<span class="value">"width:w, height:h"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed <code>v-attr</code> directives.</p>
 <p class="tip">You should use <code>v-attr</code> instead of mustache binding when setting the <code>src</code> attribute on <code>&lt;img&gt;</code> elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image’s URL.</p>
@@ -135,10 +137,12 @@
 "</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
 
+
 <p>When the argument is prefixed with <code>$</code>, Vue.js will automatically apply prefixed version of the CSS rule too, so you don’t have to manually write all the prefixes inline. In the following example Vue.js will apply <code>transform</code>, <code>webkitTransform</code>, <code>mozTransform</code> and <code>msTransform</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-style</span>=<span class="value">"$transform: 'scale(' + scale + ')'"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p class="tip">It is recommended to use <code>v-style</code> instead of mustache bindings inside <code>style</code> attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
 
@@ -181,6 +185,7 @@
 <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
 
+
 <p>If an argument is provided, a wrapper data object will always be created, using the argument string as the alias key. This allows for more explicit property access in templates:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
@@ -193,6 +198,7 @@
     <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
 <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>For detailed examples, see <a href="/guide/list.html">Displaying a List</a>.</p>
 <h3 id="v-view">v-view</h3>
@@ -225,6 +231,8 @@
 </pre></td></tr></table></figure>
 
 
+
+
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -234,6 +242,7 @@
     {&#123;name&#125;} {&#123;email&#125;}
 <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Example inehriting individual properties (using the same data):</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -245,6 +254,7 @@
     {&#123;myName&#125;} {&#123;myEmail&#125;}
 <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <h2 id="Literal_Directives">Literal Directives</h2>
 <blockquote>
@@ -259,6 +269,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>&#123;&#123;&gt; my-partial&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <h3 id="v-effect">v-effect</h3>
 <p>Apply a registered JavaScript effect to the element. JavaScript effects can be registered with <code>Vue.effect()</code> or passed inside the <code>effects</code> option.</p>

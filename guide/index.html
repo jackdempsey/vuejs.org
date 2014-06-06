@@ -91,6 +91,7 @@
 </pre></td><td class="code"><pre><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue({ <span class="comment">/* options */</span> })
 </pre></td></tr></table></figure>
 
+
 <p>This is the primary object that you will be interacting with as a developer when using Vue.js. For more details see <a href="/api/">Class: Vue</a>.</p>
 <h3 id="View">View</h3>
 <p>The actual HTML/DOM that the user sees.</p>
@@ -98,12 +99,14 @@
 </pre></td><td class="code"><pre>vm.$el <span class="comment">// The View</span>
 </pre></td></tr></table></figure>
 
+
 <p>When using Vue.js, you rarely have to touch the DOM yourself except in custom directives (explained later). View updates will be automatically triggered when the data changes. These view updates are highly granular with the precision down to a textNode. They are also batched and executed asynchronously for greater performance.</p>
 <h3 id="Model">Model</h3>
 <p>A slightly modified plain JavaScript object.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>vm.$data <span class="comment">// The Model</span>
 </pre></td></tr></table></figure>
+
 
 <p>In Vue.js, models are simply plain JavaScript objects, or <strong>data objects</strong>. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking.</p>
 <p>The data objects are mutated in place, so modifying it by reference has the same effects as modifying <code>vm.$data</code>. This also makes it easy for multiple ViewModel instances to observe the same piece of data.</p>
@@ -114,6 +117,7 @@
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-text</span>=<span class="value">"message"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
 
+
 <p>Here the div element has a <code>v-text</code> directive with the value <code>message</code>. What it does is telling Vue.js to keep the div’s textContent in sync with the ViewModel’s <code>message</code> property.</p>
 <p>Directives can encapsulate arbitrary DOM manipulations. For example <code>v-attr</code> manipulates an element’s attributes, <code>v-repeat</code> clones an element based on an Array, <code>v-on</code> attaches event listeners… we will cover them later.</p>
 <h3 id="Mustache_Bindings">Mustache Bindings</h3>
@@ -121,6 +125,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"person-&#123;&#123;id&#125;&#125;"</span>&gt;</span>Hello &#123;&#123;name&#125;&#125;!<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Although it is convenient, there are a few things you need to be aware of:</p>
 <p class="tip">The <code>src</code> attribute on an <code>&lt;image&gt;</code> element makes an HTTP requests when a value is set, so when the template is first parsed it will result in a 404. In this case <code>v-attr</code> is preferred.</p>
@@ -134,6 +139,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>&#123;&#123;message | capitalize&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Now before the div’s textContent is updated, the <code>message</code> value will first be passed through the <code>capitalize</code> function. For more details see <a href="/guide/filters.html">Filters in Depth</a>.</p>
 <h3 id="Components">Components</h3>
@@ -162,6 +168,8 @@
     <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
 
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -197,6 +205,7 @@
     }
 })
 </pre></td></tr></table></figure>
+
 
 <p><strong>Result</strong></p>
 <p><div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div></p>
