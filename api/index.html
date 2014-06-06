@@ -73,7 +73,6 @@
 </pre></td><td class="code"><pre><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue({ <span class="comment">/* options */</span> })
 </pre></td></tr></table></figure>
 
-
 <p>When you instantiate a ViewModel instance, it compiles the DOM element it is assigned to and creates data bindings that keep the DOM and the data in sync. It takes an option object that can include options about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of <a href="/api/instantiation-options.html">Instantitation Options</a>.</p>
 <p>During the compilation phase, Vue.js walks through the DOM and compiles the directives it runs into. Once compiled, these DOM nodes are now said to be managed by the ViewModel. A DOM node can only be managed by one ViewModel, and once compiled, it should not be compiled again because the original binding information would have been lost. For templates, Vue.js caches them as un-compiled DocumentFragments and simply does <code>cloneNode(true)</code> when reusing them, which is highly efficient.</p>
 <p>Each ViewModel instance has an associated DOM element <code>$el</code>, which is essentially the V in MVVM. It also has an associated JavaScript object <code>$data</code>, which is essentially the M in MVVM. Changing the M results in updates in the V. For two-way bindings, inputs in the V results in changes in the M. For more details check out <a href="/api/instance-properties.html">Instance Properties</a>.</p>

@@ -90,7 +90,7 @@
 14
 </pre></td><td class="code"><pre><span class="keyword">var</span> Profile = Vue.extend({
     tagName: <span class="string">'P'</span>,
-    template: <span class="string">'&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'</span>
+    template: <span class="string">'{{firstName}} {{lastName}} aka {{alias}}'</span>
 })
 
 <span class="keyword">var</span> profile = <span class="keyword">new</span> Profile({
@@ -104,12 +104,10 @@
 profile.$appendTo(<span class="string">'body'</span>)
 </pre></td></tr></table></figure>
 
-
 <p>Will result in:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span>&gt;</span>Walter White aka Heisenberg<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">p</span>></span>Walter White aka Heisenberg<span class="tag"></<span class="title">p</span>></span>
 </pre></td></tr></table></figure>
-
 
 <h3 id="Vue-config(_options_|_key,_[value]_)">Vue.config( options | key, [value] )</h3>
 <ul>
@@ -137,7 +135,6 @@ Vue.config({
     prefix: <span class="string">'my'</span>
 })
 </pre></td></tr></table></figure>
-
 
 <p>Here are all the options with their default values:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -183,11 +180,10 @@ Vue.config({
     interpolate: <span class="literal">true</span>,
 
     <span class="comment">// Interpolation delimiters</span>
-    <span class="comment">// default value translates to {&#123; &#125;} and {&#123;{ }&#125;}</span>
+    <span class="comment">// default value translates to {{ }} and {{{ }}}</span>
     delimiters: [<span class="string">'{'</span>, <span class="string">'}'</span>]
 }
 </pre></td></tr></table></figure>
-
 
 <h3 id="Vue-directive(_id,_[definition]_)">Vue.directive( id, [definition] )</h3>
 <ul>
@@ -224,11 +220,10 @@ Vue.config({
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
-    &#123;&#123;&gt; avatar&#125;&#125;
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>></span>
+    {{> avatar}}
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>JavaScript</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -239,7 +234,7 @@ Vue.config({
 6
 7
 8
-</pre></td><td class="code"><pre>Vue.partial(<span class="string">'avatar'</span>, <span class="string">'&lt;img v-attr="src:avatarURL"&gt;'</span>)
+</pre></td><td class="code"><pre>Vue.partial(<span class="string">'avatar'</span>, <span class="string">'<img v-attr="src:avatarURL">'</span>)
 
 <span class="keyword">new</span> Vue({
     el: <span class="string">'#demo'</span>,
@@ -249,16 +244,14 @@ Vue.config({
 })
 </pre></td></tr></table></figure>
 
-
 <p>Will result in:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/images/avatar.jpg"</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>></span>
+    <span class="tag"><<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/images/avatar.jpg"</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <h3 id="Vue-nextTick(_callback_)">Vue.nextTick( callback )</h3>
 <ul>

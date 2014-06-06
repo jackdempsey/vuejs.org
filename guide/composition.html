@@ -79,7 +79,7 @@
 <div class="content guide with-sidebar">
     <h1>Composing Components</h1>
     <h2 id="Registering_a_Component">Registering a Component</h2>
-<p>Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to <a href="http://www.w3.org/TR/components-intro/" target="_blank">Web Components</a>, without requiring any polyfills. To register a component, first create a subclass constructor of Vue using <code>Vue.extend()</code>, then use the global <code>Vue.component()</code> method to register that constructor:</p>
+<p>Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to <a href="http://www.w3.org/TR/components-intro/" target="_blank" rel="external">Web Components</a>, without requiring any polyfills. To register a component, first create a subclass constructor of Vue using <code>Vue.extend()</code>, then use the global <code>Vue.component()</code> method to register that constructor:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -93,7 +93,6 @@
 <span class="comment">// Register the constructor with id: my-component</span>
 Vue.component(<span class="string">'my-component'</span>, MyComponent)
 </pre></td></tr></table></figure>
-
 
 <p>To make things easier, you can also directly pass in the option object instead of an actual constructor:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -112,36 +111,30 @@ Vue.component(<span class="string">'my-component'</span>, {
 })
 </pre></td></tr></table></figure>
 
-
 <p>Then you can use it in a parent ViewModel’s template (make sure the component is registered <strong>before</strong> you instantiate your top-level ViewModel):</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>></span><span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>If you prefer, components can also be used in the form of a custom element tag:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">my-component</span>&gt;</span><span class="tag">&lt;/<span class="title">my-component</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">my-component</span>></span><span class="tag"></<span class="title">my-component</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component’s ID <strong>must</strong> contain a hyphen <code>-</code> to be usable as a custom tag.</p>
 
 <p>It is important to understand the difference between <code>Vue.extend()</code> and <code>Vue.component()</code>. Since <code>Vue</code> itself is a constructor, <code>Vue.extend()</code> is a <strong>class inheritance method</strong>. Its task is to create a sub-class of <code>Vue</code> and return the constructor. <code>Vue.component()</code>, on the other hand, is an <strong>asset registration method</strong> similar to <code>Vue.directive()</code> and <code>Vue.filter()</code>. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to <code>Vue.component()</code>, it calls <code>Vue.extend()</code> under the hood.</p>
-<p>Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with <code>new Image()</code>, or with an <code>&lt;img&gt;</code> tag. Both are useful in its own right and Vue.js tries to provide both for maximum flexibility.</p>
+<p>Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with <code>new Image()</code>, or with an <code><img></code> tag. Both are useful in its own right and Vue.js tries to provide both for maximum flexibility.</p>
 <h2 id="Data_Inheritance">Data Inheritance</h2>
 <h3 id="Inheriting_Objects_from_Parent_as_$data">Inheriting Objects from Parent as <code>$data</code></h3>
 <p>A child component can inherit data from its parent’s data by combining <code>v-component</code> with <code>v-with</code>. When given a single keypath without an argument, the child Component will use that value as its <code>$data</code> (hence that value must be an Object):</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo-1"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span> <span class="attribute">v-with</span>=<span class="value">"user"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo-1"</span>></span>
+    <span class="tag"><<span class="title">p</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span> <span class="attribute">v-with</span>=<span class="value">"user"</span>></span><span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
-
-
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -160,7 +153,7 @@ Vue.component(<span class="string">'my-component'</span>, {
 15
 </pre></td><td class="code"><pre><span class="comment">// registering the component first</span>
 Vue.component(<span class="string">'user-profile'</span>, {
-    template: <span class="string">'{&#123;name&#125;}&lt;br&gt;{&#123;email&#125;}'</span>
+    template: <span class="string">'{{name}}<br>{{email}}'</span>
 })
 <span class="comment">// the `user` object will be passed to the child</span>
 <span class="comment">// component as its $data</span>
@@ -174,7 +167,6 @@ Vue.component(<span class="string">'user-profile'</span>, {
     }
 })
 </pre></td></tr></table></figure>
-
 
 <p><strong>Result:</strong></p>
 <p><div id="demo-1" class="demo"><p v-component="user-profile" v-with="user"></p></div></p>
@@ -201,16 +193,13 @@ Vue.component(<span class="string">'user-profile'</span>, {
 4
 5
 6
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>{&#123;parentMsg&#125;}<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-component</span>=<span class="value">"child"</span> <span class="attribute">v-with</span>=<span class="value">"childMsg : parentMsg"</span>&gt;</span>
-        <span class="comment">&lt;!-- essentially means "bind `parentMsg` on me as `childMsg`" --&gt;</span>
-    <span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>{{parentMsg}}<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span> <span class="attribute">v-component</span>=<span class="value">"child"</span> <span class="attribute">v-with</span>=<span class="value">"childMsg : parentMsg"</span>></span>
+        <span class="comment"><!-- essentially means "bind `parentMsg` on me as `childMsg`" --></span>
+    <span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
-
-
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -230,15 +219,14 @@ Vue.component(<span class="string">'user-profile'</span>, {
     },
     components: {
         child: {
-            template: <span class="string">'&lt;input v-model="childMsg"&gt;'</span>
+            template: <span class="string">'<input v-model="childMsg">'</span>
         }
     }
 })
 </pre></td></tr></table></figure>
 
-
 <p><strong>Result:</strong></p>
-<p><div id="parent" class="demo"><p>{&#123;parentMsg&#125;}</p><p v-component="child" v-with="childMsg : parentMsg"></p></div></p>
+<p><div id="parent" class="demo"><p>{{parentMsg}}</p><p v-component="child" v-with="childMsg : parentMsg"></p></div></p>
 <script>
 new Vue({
     el: '#parent',
@@ -259,14 +247,11 @@ new Vue({
 2
 3
 4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo-2"</span>&gt;</span>
-    <span class="comment">&lt;!-- reusing the user-profile component we registered before --&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users"</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo-2"</span>></span>
+    <span class="comment"><!-- reusing the user-profile component we registered before --></span>
+    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users"</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span>></span><span class="tag"></<span class="title">li</span>></span>
+<span class="tag"></<span class="title">ul</span>></span>
 </pre></td></tr></table></figure>
-
-
-
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -300,7 +285,6 @@ new Vue({
 })
 </pre></td></tr></table></figure>
 
-
 <p><strong>Result:</strong></p>
 <p><ul id="demo-2" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul></p>
 <script>
@@ -326,13 +310,10 @@ var parent2 = new Vue({
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span> <span class="attribute">v-ref</span>=<span class="value">"profile"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"parent"</span>></span>
+    <span class="tag"><<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span> <span class="attribute">v-ref</span>=<span class="value">"profile"</span>></span><span class="tag"></<span class="title">div</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
-
-
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -341,7 +322,6 @@ var parent2 = new Vue({
 <span class="comment">// access child component</span>
 <span class="keyword">var</span> child = parent.$.profile
 </pre></td></tr></table></figure>
-
 
 <p>When <code>v-ref</code> is used together with <code>v-repeat</code>, the value you get will be an Array containing the child components mirroring the data Array.</p>
 <h2 id="Event_Communication_Between_Nested_Components">Event Communication Between Nested Components</h2>
@@ -371,7 +351,7 @@ var parent2 = new Vue({
 })
 
 <span class="keyword">var</span> parent = <span class="keyword">new</span> Vue({
-    template: <span class="string">'&lt;div v-component="child"&gt;&lt;/div&gt;'</span>,
+    template: <span class="string">'<div v-component="child"></div>'</span>,
     components: {
         child: Child
     },
@@ -383,7 +363,6 @@ var parent2 = new Vue({
     }
 })
 </pre></td></tr></table></figure>
-
 
 <script>
 var Child = Vue.extend({
@@ -452,7 +431,6 @@ var parent = new Vue({
 })
 </pre></td></tr></table></figure>
 
-
 <p>Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registeration methods:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -466,29 +444,26 @@ var parent = new Vue({
     <span class="comment">// ...</span>
 </pre></td></tr></table></figure>
 
-
 <h2 id="Content_Insertion_Points">Content Insertion Points</h2>
 <h3 id="Single_insertion_point">Single insertion point</h3>
-<p>When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component. Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special <code>&lt;content&gt;</code> element to serve as insertion points for the original content. When there is only one <code>&lt;content&gt;</code> tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the <code>&lt;content&gt;</code> tags are considered <strong>fallback content</strong>. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:</p>
+<p>When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component. Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special <code><content></code> element to serve as insertion points for the original content. When there is only one <code><content></code> tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the <code><content></code> tags are considered <strong>fallback content</strong>. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:</p>
 <p>Template for <code>my-component</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span>&gt;</span>This is my component!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-<span class="tag">&lt;<span class="title">content</span>&gt;</span>This will only be displayed if no content is inserted<span class="tag">&lt;/<span class="title">content</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">h1</span>></span>This is my component!<span class="tag"></<span class="title">h1</span>></span>
+<span class="tag"><<span class="title">content</span>></span>This will only be displayed if no content is inserted<span class="tag"></<span class="title">content</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>Parent markup that uses the component:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>This is some original content<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>This is some more original content<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>This is some original content<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>This is some more original content<span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>The rendered result will be:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
@@ -496,25 +471,23 @@ var parent = new Vue({
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>This is my component!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>This is some original content<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>This is some more original content<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span>></span>
+    <span class="tag"><<span class="title">h1</span>></span>This is my component!<span class="tag"></<span class="title">h1</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>This is some original content<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>This is some more original content<span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
 
-
 <h3 id="Multiple_insertion_points_and_the_select_attribute">Multiple insertion points and the <code>select</code> attribute</h3>
-<p><code>&lt;content&gt;</code> elements have a special attribute, <code>select</code>, which expects a CSS selector. You can have multiple <code>&lt;content&gt;</code> insertion points with different <code>select</code> attributes, and each of them will be replaced by the elements matching that selector from the original content.</p>
+<p><code><content></code> elements have a special attribute, <code>select</code>, which expects a CSS selector. You can have multiple <code><content></code> insertion points with different <code>select</code> attributes, and each of them will be replaced by the elements matching that selector from the original content.</p>
 <p>Template for <code>multi-insertion-component</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(3)"</span>&gt;</span><span class="tag">&lt;/<span class="title">content</span>&gt;</span>
-<span class="tag">&lt;<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(2)"</span>&gt;</span><span class="tag">&lt;/<span class="title">content</span>&gt;</span>
-<span class="tag">&lt;<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(1)"</span>&gt;</span><span class="tag">&lt;/<span class="title">content</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(3)"</span>></span><span class="tag"></<span class="title">content</span>></span>
+<span class="tag"><<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(2)"</span>></span><span class="tag"></<span class="title">content</span>></span>
+<span class="tag"><<span class="title">content</span> <span class="attribute">select</span>=<span class="value">"p:nth-child(1)"</span>></span><span class="tag"></<span class="title">content</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>Parent markup:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
@@ -522,13 +495,12 @@ var parent = new Vue({
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"multi-insertion-component"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>One<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Two<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Three<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"multi-insertion-component"</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>One<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>Two<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>Three<span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>The rendered result will be:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
@@ -536,13 +508,12 @@ var parent = new Vue({
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Three<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Two<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span>&gt;</span>One<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>Three<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>Two<span class="tag"></<span class="title">p</span>></span>
+    <span class="tag"><<span class="title">p</span>></span>One<span class="tag"></<span class="title">p</span>></span>
+<span class="tag"></<span class="title">div</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.</p>
 <p>Next: <a href="/guide/application.html">Building Larger Apps</a>.</p>

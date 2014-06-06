@@ -84,9 +84,8 @@
 <h2 id="CSS_Transitions">CSS Transitions</h2>
 <p>To enable CSS transitions on an element, simply give it an empty <code>v-transition</code> directive:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"msg"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-transition</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"msg"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-transition</span>></span>Hello!<span class="tag"></<span class="title">p</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>You will also need to provide CSS rules for <code>v-enter</code> and <code>v-leave</code> classes (the class names can be configured with <code>Vue.config()</code>):</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre>1
@@ -115,8 +114,7 @@
 <span class="rule">}</span></span>
 </pre></td></tr></table></figure>
 
-
-<div id="demo"><p class="msg" v-if="show" v-transition>Hello!</p><button v-on="click: show = !show">Toggle</button></div>
+<div id="demo"><p class="msg" v-if="show" v-transition="">Hello!</p><button v-on="click: show = !show">Toggle</button></div>
 
 <style>
 .msg {
@@ -141,7 +139,7 @@ new Vue({
 })
 </script>
 
-<p>Now when the <code>show</code> property changes, Vue.js will insert or remove the <code>&lt;p&gt;</code> element accordingly, and apply transition classes as specified below:</p>
+<p>Now when the <code>show</code> property changes, Vue.js will insert or remove the <code><p></code> element accordingly, and apply transition classes as specified below:</p>
 <ul>
 <li><p>When <code>show</code> becomes false, Vue.js will:</p>
 <ol>
@@ -165,11 +163,8 @@ new Vue({
 <p>CSS animations are applied in a similar fashion with transitions, but using the <code>v-animation</code> directive. The difference is that <code>v-enter</code> is not removed immediately after the element is inserted, but on an <code>animationend</code> callback.</p>
 <p><strong>Example:</strong> (omitting prefixed CSS rules here)</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"animated"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-animation</span>&gt;</span>Look at me!<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"animated"</span> <span class="attribute">v-if</span>=<span class="value">"show"</span> <span class="attribute">v-animation</span>></span>Look at me!<span class="tag"></<span class="title">p</span>></span>
 </pre></td></tr></table></figure>
-
-
-
 
 <figure class="highlight css"><table><tr><td class="gutter"><pre>1
 2
@@ -243,8 +238,7 @@ new Vue({
 }
 </pre></td></tr></table></figure>
 
-
-<div id="anim" class="demo"><span class="animated" v-if="show" v-animation>Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
+<div id="anim" class="demo"><span class="animated" v-if="show" v-animation="">Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
 
 <style>
     .animated {
@@ -337,13 +331,11 @@ new Vue({
 })
 </pre></td></tr></table></figure>
 
-
 <p>The third argument, <code>timeout</code>, is a wrapped version of <code>setTimeout</code>. You should use it in place of <code>setTimeout</code> so that when an effect is cancelled, its associated timers can be cleared.</p>
 <p>Then you can use it by providing the effect id to <code>v-effect</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-effect</span>=<span class="value">"my-effect"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</pre></td><td class="code"><pre><span class="tag"><<span class="title">p</span> <span class="attribute">v-effect</span>=<span class="value">"my-effect"</span>></span><span class="tag"></<span class="title">p</span>></span>
 </pre></td></tr></table></figure>
-
 
 <p>Next: <a href="/guide/composition.html">Composing ViewModels</a>.</p>
 
