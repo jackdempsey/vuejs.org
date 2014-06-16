@@ -83,11 +83,14 @@
 2
 3
 4
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>></span>
-    <span class="tag"><<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: onClick"</span>></span>Trigger a handler<span class="tag"></<span class="title">a</span>></span>
-    <span class="tag"><<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: n++"</span>></span>Trigger an expression<span class="tag"></<span class="title">a</span>></span>
-<span class="tag"></<span class="title">div</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: onClick"</span>&gt;</span>Trigger a handler<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: n++"</span>&gt;</span>Trigger an expression<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -115,15 +118,19 @@
 })
 </pre></td></tr></table></figure>
 
+
 <h2 id="Invoke_Handler_with_Expression">Invoke Handler with Expression</h2>
 <p><code>targetVM</code> could be useful when <code>v-on</code> is used with <code>v-repeat</code>, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in <code>this</code>, which equals the current context ViewModel:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"list"</span>></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">v-on</span>=<span class="value">"click: toggle(this)"</span>></span><span class="tag"></<span class="title">li</span>></span>
-<span class="tag"></<span class="title">ul</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"list"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">v-on</span>=<span class="value">"click: toggle(this)"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -155,10 +162,14 @@
 })
 </pre></td></tr></table></figure>
 
+
 <p>When you want to access the original DOM event in an expression handler, you can pass it in as <code>$event</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">button</span> <span class="attribute">v-on</span>=<span class="value">"click: submit('hello!', $event)"</span>></span>Submit<span class="tag"></<span class="title">button</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">button</span> <span class="attribute">v-on</span>=<span class="value">"click: submit('hello!', $event)"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -180,20 +191,23 @@
 <span class="comment">/* ... */</span>
 </pre></td></tr></table></figure>
 
+
 <h2 id="The_Special_key_Filter">The Special <code>key</code> Filter</h2>
 <p>When listening for keyboard events, we often need to check for common key codes. Vue.js provides a special <code>key</code> filter that can only be used with <code>v-on</code> directives. It takes a single argument that denotes the key code to check for:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre><span class="comment"><!-- only call vm.submit() when the keyCode is 13 --></span>
-<span class="tag"><<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:submit | key 13"</span>></span>
+</pre></td><td class="code"><pre><span class="comment">&lt;!-- only call vm.submit() when the keyCode is 13 --&gt;</span>
+<span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:submit | key 13"</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>It also has a few presets for commonly used keys:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre><span class="comment"><!-- same as above --></span>
-<span class="tag"><<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:submit | key enter"</span>></span>
+</pre></td><td class="code"><pre><span class="comment">&lt;!-- same as above --&gt;</span>
+<span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:submit | key enter"</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <p>Check the API reference for a <a href="/api/filters.html#key">full list of key filter presets</a>.</p>
 <h2 id="Why_Listeners_in_HTML?">Why Listeners in HTML?</h2>

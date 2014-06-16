@@ -85,12 +85,15 @@
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo"</span>></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">class</span>=<span class="value">"item-{{$index}}"</span>></span>
-        {{$index}} - {{parentMsg}} {{childMsg}}
-    <span class="tag"></<span class="title">li</span>></span>
-<span class="tag"></<span class="title">ul</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">class</span>=<span class="value">"item-{&#123;$index&#125;}"</span>&gt;</span>
+        {&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -114,8 +117,9 @@
 })
 </pre></td></tr></table></figure>
 
+
 <p><strong>Result:</strong></p>
-<p><ul id="demo"><li v-repeat="items" class="item-{{$index}}">{{$index}} - {{parentMsg}} {{childMsg}}</li></ul></p>
+<p><ul id="demo"><li v-repeat="items" class="item-{&#123;$index&#125;}">{&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</li></ul></p>
 <script>
 var demo = new Vue({
     el: '#demo',
@@ -136,12 +140,15 @@ var demo = new Vue({
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"tags"</span>></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"tags"</span>></span>
-        {{$value}}
-    <span class="tag"></<span class="title">li</span>></span>
-<span class="tag"></<span class="title">ul</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"tags"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"tags"</span>&gt;</span>
+        {&#123;$value&#125;}
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -157,8 +164,9 @@ var demo = new Vue({
 })
 </pre></td></tr></table></figure>
 
+
 <p><strong>Result:</strong></p>
-<p><ul id="tags" class="demo"><li v-repeat="tags">{{$value}}</li></ul></p>
+<p><ul id="tags" class="demo"><li v-repeat="tags">{&#123;$value&#125;}</li></ul></p>
 <script>
 new Vue({
     el: '#tags',
@@ -176,13 +184,14 @@ new Vue({
 4
 5
 6
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"users"</span>></span>
-    <span class="comment"><!-- think of this as "for each user in users" --></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"user: users"</span>></span>
-        {{user.name}} {{user.email}}
-    <span class="tag"></<span class="title">li</span>></span>
-<span class="tag"></<span class="title">ul</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"users"</span>&gt;</span>
+    <span class="comment">&lt;!-- think of this as "for each user in users" --&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"user: users"</span>&gt;</span>
+        {&#123;user.name&#125;} {&#123;user.email&#125;}
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
 
 <h2 id="Mutation_Methods">Mutation Methods</h2>
 <p>Under the hood, Vue.js intercepts an observed Array’s mutating methods (<code>push()</code>, <code>pop()</code>, <code>shift()</code>, <code>unshift()</code>, <code>splice()</code>, <code>sort()</code> and <code>reverse()</code>) so they will also trigger View updates.</p>
@@ -194,6 +203,7 @@ demo.items.unshift({ childMsg: <span class="string">'Baz'</span> })
 demo.items.pop()
 </pre></td></tr></table></figure>
 
+
 <p>You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented <code>$set()</code> method. Vue.js augments observed Arrays with two convenience methods: <code>$set()</code> and <code>$remove()</code>:</p>
 <h3 id="$set(_index,_value_)">$set( index, value )</h3>
 <p>Setting a value in the Array is self-explanatory:</p>
@@ -203,6 +213,7 @@ demo.items.pop()
 demo.items.$set(<span class="number">0</span>, { childMsg: <span class="string">'Changed!'</span>})
 </pre></td></tr></table></figure>
 
+
 <h3 id="$remove(_index_|_value_)">$remove( index | value )</h3>
 <p><code>$remove()</code> is just syntax sugar for <code>splice()</code>. will remove the element at the given index. When the argument is not a number, <code>$remove()</code> will search for that value in the array and remove the first occurrence.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
@@ -210,6 +221,7 @@ demo.items.$set(<span class="number">0</span>, { childMsg: <span class="string">
 </pre></td><td class="code"><pre><span class="comment">// remove the item at index 0</span>
 demo.items.$remove(<span class="number">0</span>)
 </pre></td></tr></table></figure>
+
 
 <h2 id="Setting_a_new_Array">Setting a new Array</h2>
 <p>When you are using non-mutating methods, e.g. <code>filter()</code>, <code>concat()</code> or <code>slice()</code>, the returned Array will be a different instance. In that case, you can just set the value to the new Array:</p>
@@ -221,9 +233,10 @@ demo.items.$remove(<span class="number">0</span>)
 })
 </pre></td></tr></table></figure>
 
+
 <p>You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuses existing ViewModels and DOM nodes, and incurrs the least amount of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.</p>
 <h2 id="Array_Filters">Array Filters</h2>
-<p>Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: <code>filterBy</code> and <code>orderBy</code>. Check out their <a href="/api/filters.html#filterby">documentations</a> for more details.</p>
+<p>Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: <code>filterBy</code> and <code>orderBy</code>. Check out their <a href="/api/filters.html#filterBy">documentations</a> for more details.</p>
 <h2 id="Iterating_Through_An_Object">Iterating Through An Object</h2>
 <p>Starting in Vue.js v0.8.8, you can also use <code>v-repeat</code> to iterate through the properties of an Object. Each repeated instance will have a special property <code>$key</code>. For primitive values, you also get <code>$value</code> which is similar to primitive values in Arrays.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre>1
@@ -231,12 +244,15 @@ demo.items.$remove(<span class="number">0</span>)
 3
 4
 5
-</pre></td><td class="code"><pre><span class="tag"><<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"repeat-object"</span>></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"primitiveValues"</span>></span>{{$key}} : {{$value}}<span class="tag"></<span class="title">li</span>></span>
-    <span class="tag"><<span class="title">li</span>></span>===<span class="tag"></<span class="title">li</span>></span>
-    <span class="tag"><<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"objectValues"</span>></span>{{$key}} : {{msg}}<span class="tag"></<span class="title">li</span>></span>
-<span class="tag"></<span class="title">ul</span>></span>
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"repeat-object"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"primitiveValues"</span>&gt;</span>{&#123;$key&#125;} : {&#123;$value&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span>===<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"objectValues"</span>&gt;</span>{&#123;$key&#125;} : {&#123;msg&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
 </pre></td></tr></table></figure>
+
+
+
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -276,8 +292,9 @@ demo.items.$remove(<span class="number">0</span>)
 })
 </pre></td></tr></table></figure>
 
+
 <p><strong>Result:</strong></p>
-<p><ul id="repeat-object" class="demo"><li v-repeat="primitiveValues">{{$key}} : {{$value}}</li><li>===</li><li v-repeat="objectValues">{{$key}} : {{msg}}</li></ul></p>
+<p><ul id="repeat-object" class="demo"><li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li><li>===</li><li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li></ul></p>
 <script>
 new Vue({
     el: '#repeat-object',
