@@ -215,7 +215,7 @@ demo.items.$set(<span class="number">0</span>, { childMsg: <span class="string">
 
 
 <h3 id="$remove(_index_|_value_)">$remove( index | value )</h3>
-<p><code>$remove()</code> is just syntax sugar for <code>splice()</code>. will remove the element at the given index. When the argument is not a number, <code>$remove()</code> will search for that value in the array and remove the first occurrence.</p>
+<p><code>$remove()</code> is just syntax sugar for <code>splice()</code>. It will remove the element at the given index. When the argument is not a number, <code>$remove()</code> will search for that value in the array and remove the first occurrence.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment">// remove the item at index 0</span>
@@ -234,7 +234,7 @@ demo.items.$remove(<span class="number">0</span>)
 </pre></td></tr></table></figure>
 
 
-<p>You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuses existing ViewModels and DOM nodes, and incurrs the least amount of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.</p>
+<p>You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuse existing ViewModels and DOM nodes, and incurs the least number of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.</p>
 <h2 id="Array_Filters">Array Filters</h2>
 <p>Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: <code>filterBy</code> and <code>orderBy</code>. Check out their <a href="/api/filters.html#filterBy">documentations</a> for more details.</p>
 <h2 id="Iterating_Through_An_Object">Iterating Through An Object</h2>
